@@ -1,0 +1,65 @@
+<h3>Bootstrapping!</h3>
+<p>Some bootstrap examples will show up here.</p>
+<div class="container">
+  <form>
+    <h4>Some Star Rating:
+      <rating name='currentRating' [(ngModel)]="currentRating" [max]="maxRating" [readonly]="ratingIsReadonly"
+        (onHover)="hoveringOver($event)" (onLeave)="resetStar()" [titles]="['one','two','three']"></rating>
+      <span class="label" [ngClass]="{'label-warning': percentRating<30, 'label-info': percentRating>=30 && percentRating<70, 'label-success': percentRating>=70}"
+        [ngStyle]="{display: (overStarRating && !ratingIsReadonly) ? 'inline' : 'none'}">{{ percentRating }}%</span>
+    </h4>
+
+    <button type="button" class="btn btn-sm btn-danger" (click)="currentRating = 0" [disabled]="ratingIsReadonly">Clear
+    </button>
+    <button type="button" class="btn btn-sm btn-primary" (click)="ratingIsReadonly = ! ratingIsReadonly">Toggle
+      Readonly
+    </button>
+
+    <div class="card">
+      <pre class="card-block card-header">
+        Rate: <b>{{ currentRating }}</b>
+        Readonly is: <i>{{ ratingIsReadonly }}</i>
+        Hovering over: <b>{{ overStarRating || "none" }}</b>
+      </pre>
+    </div>
+    <br>
+
+    <h4>A Toggle Button:
+      <button name="toggleButton" type="button" class="btn" [class.btn-primary]="toggleButton === 'On'"
+        [class.btn-danger]="toggleButton === 'Off'" [(ngModel)]="toggleButton" btnCheckbox btnCheckboxTrue="On"
+        btnCheckboxFalse="Off">
+        {{ toggleButton }}
+      </button>
+    </h4>
+    <pre class="card card-block card-header">
+      {{ toggleButton }}
+    </pre>
+    <br>
+
+    <div class="row">
+      <div class="col-xs-12 col-12 col-md-4 form-group">
+        <h4>A Date Picker:</h4>
+        <input name="startDate" [(ngModel)]="startDate" type="text" placeholder="Datepicker" class="form-control"
+          bsDatepicker>
+      </div>
+    </div>
+    <pre class="alert alert-info">Date is: {{ startDate }}</pre>
+    <br>
+
+    <div>
+      <h4>A Time Picker!</h4>
+      <timepicker name="starttime" [minuteStep]="15" [(ngModel)]="startTime"></timepicker>
+    </div>
+    <pre class="alert alert-info">Time is: {{ startTime }}</pre>
+    <br>
+
+    <h4>Some Radio Buttons!
+      <div class="btn-group">
+        <label name="radiobutton" class="btn btn-primary" [(ngModel)]="radioButton" btnRadio="Left" tabindex="0" role="button">Left</label>
+        <label name="radiobutton" class="btn btn-primary" [(ngModel)]="radioButton" btnRadio="Middle" tabindex="0" role="button">Middle</label>
+        <label name="radiobutton" class="btn btn-primary" [(ngModel)]="radioButton" btnRadio="Right" tabindex="0" role="button">Right</label>
+      </div>
+    </h4>
+    <pre class="card card-block card-header">{{ radioButton || 'null' }}</pre>
+  </form>
+</div>
